@@ -8,6 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "start":"",
+    "client":"",
   },
   "dependencies": {
   },
