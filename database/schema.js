@@ -43,3 +43,4 @@ var seeddata=()=>{
 }
 
 //seeddata();
+module.exports={seeddata,fetchImage};
