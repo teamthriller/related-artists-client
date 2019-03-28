@@ -1,6 +1,6 @@
-const schema = require('../database/schema');
+const schema = require('../src/database/schema');
 test('test fetchimage', ()=>{
-  results = [];
+  const results = [];
   results.push(schema.fetchImage());
   Promise.all(results).then((results)=>{
     expect(typeof results[0]).to.equal('object');

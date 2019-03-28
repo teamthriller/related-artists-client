@@ -7,7 +7,7 @@ var artistSchema = new Schema({
   name: String,
   bio: String,
   image: String,
-  relatedartists:[]
+  relatedartists:[] 
 });
 
 var Artist = mongoose.model('Artist', artistSchema);
@@ -42,4 +42,4 @@ var seeddata = ()=>{
 };
 
 //seeddata();
-module.exports = {seeddata,fetchImage};
+module.exports = {seeddata, fetchImage};
