@@ -25,13 +25,12 @@ var fetchImage=function(){
 var seeddata=()=>{
   mongoose.connect('mongodb://localhost/artists');
   Artist.collection.drop();
-  var imageurls=[]
+  var imageurls=[];
   var count=0;
   var entries=100;
   while( count<entries){
     imageurls.push(fetchImage());
     count=count+1;
-    //Artist.create({name:"",bio:"",image:imageurl,relatedartists:[]})
   }
   Promise.all(imageurls).then((imageurls)=>{
     for(var index in imageurls){
