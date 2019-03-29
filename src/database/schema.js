@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const fetch = require('node-fetch');
-mongoose.Promise = require('bluebird');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const artistSchema = new Schema({
   name: String,
@@ -17,7 +16,7 @@ const fetchImage = () => {
   const imagewidth = 400;
   const imageheight = 480;
   const collectionid = 1163637;
-  return fetch(`http://source.unsplash.com/collection/${collectionid}/${imagewidth}x${imageheight}`).then((response) => { return response.url; });
+  return fetch(`http://source.unsplash.com/collection/${collectionid}/${imagewidth}x${imageheight}`).then((response) => response.url);
 };
 
 const seeddata = () => {
@@ -30,12 +29,13 @@ const seeddata = () => {
     imageurls.push(fetchImage());
     count += 1;
   }
-  Promise.all(imageurls).then((imageurls)=>{
-    for (var index in imageurls) {
-      index = parseInt(index);
-      var image = imageurls[index];
-      Artist.create({name: `${index}`, bio: `bio of ${index}`, image: image, relatedartists: [(index + 1) % 100, (index + 20) % 100]});
-    }
+  Promise.all(imageurls).then((images) => {
+    const imagesarray = Object.values(images);
+    imagesarray.forEach((image, index) => {
+      Artist.create({
+        name: `${index}`, bio: `bio of ${index}`, image, relatedartists: [(index + 1) % 100, (index + 20) % 100],
+      });
+    });
   });
 };
 
