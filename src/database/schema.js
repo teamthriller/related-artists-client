@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const fetch = require('node-fetch');
 
 const { Schema } = mongoose;
+mongoose.Promise = require('bluebird');
 
 const artistSchema = new Schema({
   name: String,
@@ -39,5 +40,18 @@ const seeddata = () => {
   });
 };
 
+const getdata = () => {
+  mongoose.connect('mongodb://localhost/artists');
+  return new Promise((resolve, reject) => {
+    Artist.find({}, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
 // seeddata();
-module.exports = { seeddata, fetchImage };
+module.exports = { seeddata, fetchImage, getdata };

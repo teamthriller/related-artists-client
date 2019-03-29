@@ -5,7 +5,7 @@
   "scripts": {
     "client": "webpack -d --watch",
     "server": "nodemon src/server/index.js",
-    "test": "jest",
+    "test": "jest --coverage",
     "seeddata": "node schema.js",
     "lint": "eslint app.js"
   },

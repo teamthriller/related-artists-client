@@ -28,5 +28,6 @@ module.exports = {
     'max-len': 'off',
     'guard-for-in': 'off',
     'react/jsx-filename-extension': 'off',
+    'arrow-body-style' : 'off',
   },
 };
