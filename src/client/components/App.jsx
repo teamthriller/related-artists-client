@@ -5,8 +5,8 @@ class App extends React.Component{
     }
     render(){
         return (
-            <div>Hi from react app</div>
+            <div><div>Hi from react app</div></div>
         )
     }
 }
-export default App;
+module.exports={App:App};
