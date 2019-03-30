@@ -17,3 +17,11 @@ app.get('/artists', (req, res) => {
     res.json({ err: 'cant access database' });
   });
 });
+
+app.get('/data/artist/', (req, res) => {
+  const userid = req.query.id;
+  console.log(userid);
+  db.getArtist(userid).then((data) => {
+    res.json(data);
+  });
+});

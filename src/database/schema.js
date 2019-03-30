@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 mongoose.Promise = require('bluebird');
 
 const artistSchema = new Schema({
+  _id: String,
   name: String,
   bio: String,
   image: String,
@@ -22,7 +23,13 @@ const fetchImage = () => {
 
 const seeddata = () => {
   mongoose.connect('mongodb://localhost/artists');
-  Artist.collection.drop();
+  try {
+    Artist.collection.drop();
+  } catch (err) {
+    if (err.message !== 'ns not found') {
+      throw err;
+    }
+  }
   const imageurls = [];
   let count = 0;
   const entries = 100;
@@ -31,12 +38,13 @@ const seeddata = () => {
     count += 1;
   }
   Promise.all(imageurls).then((images) => {
-    const imagesarray = Object.values(images);
-    imagesarray.forEach((image, index) => {
+    images.forEach((image, index) => {
       Artist.create({
-        name: `${index}`, bio: `bio of ${index}`, image, relatedartists: [(index + 1) % 100, (index + 20) % 100],
+        _id: `${index}`, name: `${index}`, bio: `bio of ${index}`, image, relatedartists: [(index + 1) % 100, (index + 20) % 100],
       });
     });
+  }).then(() => {
+    console.log('done seeding');
   });
 };
 
@@ -44,6 +52,23 @@ const getdata = () => {
   mongoose.connect('mongodb://localhost/artists');
   return new Promise((resolve, reject) => {
     Artist.find({}, (err, data) => {
+      mongoose.connection.close();
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
+const getArtist = (id) => {
+  console.log(id);
+  mongoose.connect('mongodb://localhost/artists');
+  return new Promise((resolve, reject) => {
+    const query = Artist.where({ _id: id });
+    query.findOne((err, data) => {
+      mongoose.connection.close();
       if (err) {
         reject(err);
       } else {
@@ -54,4 +79,6 @@ const getdata = () => {
 };
 
 // seeddata();
-module.exports = { seeddata, fetchImage, getdata };
+module.exports = {
+  seeddata, fetchImage, getdata, getArtist,
+};
