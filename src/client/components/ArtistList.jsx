@@ -1,6 +1,7 @@
 import React from 'react';
 import Artist from './Artist.jsx';
 
+
 // for an artist
 const getRelatedArtist = (id) => {
   return fetch(`http://localhost:3000/data/artist?id=${id}`).then((response) => {

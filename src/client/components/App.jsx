@@ -1,5 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 import ArtistList from './ArtistList.jsx';
+
+const List = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -33,9 +40,9 @@ class App extends React.Component {
       component = <ArtistList artist={this.state.artistinfo} />;
     }
     return (
-      <div>
+      <List>
         {component}
-      </div>
+      </List>
     );
   }
 }
