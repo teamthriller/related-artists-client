@@ -31,5 +31,6 @@ module.exports = {
     'arrow-body-style' : 'off',
     'import/extensions': 'off',
     'react/destructuring-assignment': 'off',
+    'react/prop-types': 'off',
   },
 };

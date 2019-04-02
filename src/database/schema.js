@@ -63,7 +63,6 @@ const getdata = () => {
 };
 
 const getArtist = (id) => {
-  console.log(id);
   mongoose.connect('mongodb://localhost/artists');
   return new Promise((resolve, reject) => {
     const query = Artist.where({ _id: id });

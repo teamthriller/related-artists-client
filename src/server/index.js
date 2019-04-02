@@ -20,7 +20,6 @@ app.get('/artists', (req, res) => {
 
 app.get('/data/artist/', (req, res) => {
   const userid = req.query.id;
-  console.log(userid);
   db.getArtist(userid).then((data) => {
     res.json(data);
   });

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import ArtistList from './ArtistList.jsx';
 
-const List = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+const AppStyle = styled.div`
+  min-height: 100%;
+  background-color: black;
 `;
 
 class App extends React.Component {
@@ -40,9 +40,9 @@ class App extends React.Component {
       component = <ArtistList artist={this.state.artistinfo} />;
     }
     return (
-      <List>
+      <AppStyle>
         {component}
-      </List>
+      </AppStyle>
     );
   }
 }
