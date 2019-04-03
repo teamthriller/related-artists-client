@@ -21,7 +21,7 @@ const widthandheight = (windowsize) => {
 
 const AppStyle = styled.div`
   min-height: 100%;
-  background-color: black;
+  background-color: rgb(30,30,30);
 `;
 
 class App extends React.Component {
@@ -47,6 +47,14 @@ class App extends React.Component {
     const newwindow = widthandheight(windowsize);
     this.setState({ windowsize: newwindow });
     this.render();
+  }
+
+  handlerightclick() {
+    return this.state;
+  }
+
+  handleclick() {
+    return this.state;
   }
 
   fetchArtistData() {

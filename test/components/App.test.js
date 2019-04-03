@@ -3,8 +3,8 @@ const React = require('react');
 const { configure, mount } = require('enzyme');
 const fetch = require('node-fetch');
 const Adapter = require('enzyme-adapter-react-15');
-const styled = require('styled-components');
-const renderer = require('react-test-renderer');
+// const styled = require('styled-components');
+// const renderer = require('react-test-renderer');
 const App = require('../../src/client/components/App.jsx');
 const ArtistList = require('../../src/client/components/ArtistList.jsx');
 // const sinon = require('sinon');
@@ -31,7 +31,7 @@ test('check that ArtistList is in the dom', () => {
   global.fetch = fetch; // need to redefine fetch as node doesn't have fetch defined
   const Component = ArtistList.default;
   return new Promise((resolve) => {
-    const wrap = mount(<Component artist={{ relatedartists: [2, 10] }} />);
+    const wrap = mount(<Component artist={{ relatedartists: [2, 10] }} size={{ width: '25%', height: '25%' }} />);
     setTimeout(resolve.bind(null, wrap), 1000);
   }).then((wrap) => {
     wrap.update();
@@ -44,7 +44,7 @@ test('check that ArtistList renders 2 related artists', () => {
   global.fetch = fetch; // need to redefine fetch as node doesn't have fetch defined
   const Component = ArtistList.default;
   return new Promise((resolve) => {
-    const wrap = mount(<Component artist={{ relatedartists: [2, 10] }} />);
+    const wrap = mount(<Component artist={{ relatedartists: [2, 10] }} size={{ width: '25%', height: '25%' }} />);
     setTimeout(resolve.bind(null, wrap), 1000);
   }).then((wrap) => {
     wrap.update();

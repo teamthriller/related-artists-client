@@ -13,7 +13,6 @@ const ImageStyle = styled.div`
   alignItems: 'center';
 `;
 const TextStyle = styled.div`
-  background-color: rgb(50,50,50);
   font-size: 2em;
   text-align: center;
 `;

@@ -45,10 +45,8 @@ class ArtistList extends React.Component {
       justify-content: flex-start;
       align-content: flex-start;
       flex-wrap: wrap;
-      background-color: black;
     `;
     this.Icon = styled.div`
-      background-color: black;
       color: white;
       padding: 32px;
       width: ${this.props.size.width};
