@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Artist from './Artist.jsx';
-import { thisTypeAnnotation } from '@babel/types';
+
 
 const getRelatedArtist = (id) => {
   return fetch(`http://localhost:3000/data/artist?id=${id}`).then((response) => {
@@ -45,7 +45,7 @@ class ArtistList extends React.Component {
       justify-content: flex-start;
       align-content: flex-start;
       flex-wrap: wrap;
-      background-color: black
+      background-color: black;
     `;
     this.Icon = styled.div`
       background-color: black;

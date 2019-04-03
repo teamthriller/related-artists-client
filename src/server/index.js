@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const db = require('../database/schema');
 
+
 const app = express();
 const port = 3000;
 
@@ -23,4 +24,8 @@ app.get('/data/artist/', (req, res) => {
   db.getArtist(userid).then((data) => {
     res.json(data);
   });
+});
+
+app.get('/icon', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/playicon.png'));
 });

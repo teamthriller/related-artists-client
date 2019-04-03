@@ -53,4 +53,4 @@ test('check that ArtistList renders 2 related artists', () => {
   });
 });
 
-// styling tests
+// event tests
