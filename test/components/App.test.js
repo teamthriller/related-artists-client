@@ -4,10 +4,9 @@ const { configure, mount } = require('enzyme');
 const fetch = require('node-fetch');
 const Adapter = require('enzyme-adapter-react-15');
 const styled = require('styled-components');
-const { enzymeFind } = require('styled-components/test-utils');
+const renderer = require('react-test-renderer');
 const App = require('../../src/client/components/App.jsx');
 const ArtistList = require('../../src/client/components/ArtistList.jsx');
-const Artist = require('../../src/client/components/Artist.jsx');
 // const sinon = require('sinon');
 
 
@@ -53,6 +52,5 @@ test('check that ArtistList renders 2 related artists', () => {
     wrap.unmount();
   });
 });
-
 
 // styling tests
