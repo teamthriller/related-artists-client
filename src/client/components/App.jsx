@@ -8,13 +8,13 @@ const widthandheight = (windowsize) => {
   let size;
   const { width } = windowsize;
   if (width < 767) {
-    size = { width: '50%', height: '50%' };
-  } else if (width >= 767 && width < 996) {
     size = { width: '33%', height: '33%' };
-  } else if (width >= 996 && width < 1200) {
+  } else if (width >= 767 && width < 996) {
     size = { width: '25%', height: '25%' };
-  } else {
+  } else if (width >= 996 && width < 1200) {
     size = { width: '16%', height: '16%' };
+  } else {
+    size = { width: '10%', height: '10%' };
   }
   console.log(size, windowsize);
   return size;
@@ -39,6 +39,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.fetchArtistData();
+    this.updatewindow();
     window.addEventListener('resize', this.updatewindow);
   }
 

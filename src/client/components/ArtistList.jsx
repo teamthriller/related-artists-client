@@ -35,10 +35,15 @@ class ArtistList extends React.Component {
   updatesize() {
     this.List = styled.div`
       width: ${window.innerWidth};
-      height: ${window.innerHeight};
+      height: ${window.innerWidth};
+      min-width: 400px;
+      max-width: 1440px;
+      min-height: 400px;
+      max-height: 1440px;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+      align-content: flex-start;
       flex-wrap: wrap;
       background-color: black
     `;
@@ -47,7 +52,7 @@ class ArtistList extends React.Component {
       color: white;
       padding: 32px;
       width: ${this.props.size.width};
-      height: ${this.props.size.width};
+      height: ${this.props.size.height};
       letter-spacing: .015em;
     `;
   }
