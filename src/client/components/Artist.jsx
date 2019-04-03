@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ArtistMenu from './ArtistMenu.jsx';
 
 // import logo from '../../../public/playicon.png';
 
@@ -34,11 +33,9 @@ class Artist extends React.Component {
     super(props);
     this.state = {
       hovered: false,
-      menu: false,
     };
     this.handlehoverenter = this.handlehoverenter.bind(this);
     this.handlehoverleave = this.handlehoverleave.bind(this);
-    this.handleclick = this.handleclick.bind(this);
   }
 
   handlehoverenter() {
@@ -49,11 +46,6 @@ class Artist extends React.Component {
   handlehoverleave() {
     const newstate = false;
     this.setState({ hovered: newstate });
-  }
-
-  handleclick() {
-    const newmenu = true;
-    this.setState({ menu: newmenu });
   }
 
   render() {

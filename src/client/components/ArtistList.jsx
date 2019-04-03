@@ -65,7 +65,7 @@ class ArtistList extends React.Component {
       <List>
         {this.state.artists.map((artistdata) => {
           const { _id } = artistdata;
-          return <Icon key={_id}><Artist artist={artistdata} /></Icon>;
+          return <Icon key={_id} onClick={this.props.rightclick}><Artist artist={artistdata} /></Icon>;
         })}
       </List>
     );

@@ -1,15 +1,38 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const ArtistMenu = () => {
-  return (
-    <div>
-      <ul class="menu-options">
-        <li class="menu-option">Start Radio</li>
-        <li class="menu-option">Save to Your Library</li>
-        <li class="menu-option">Copy Artist Link</li>
-      </ul>
-    </div>
-  );
-};
+
+class ArtistMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.Menu = '';
+  }
+
+
+  updatestyle() {
+    this.Menu = styled.ul`
+      background-color: white;
+      position: fixed;
+      z-index: 2;
+      top: ${this.props.pos.top};
+      left: ${this.props.pos.left};
+    `;
+  }
+
+  render() {
+    this.updatestyle();
+    const { Menu } = this;
+    return (
+      <div className="contextMenu">
+        <Menu className="menu-options">
+          <li className="menu-option">Start Radio</li>
+          <li className="menu-option">Save to Your Library</li>
+          <li className="menu-option">Copy Artist Link</li>
+        </Menu>
+      </div>
+    );
+  }
+}
 
 export default ArtistMenu;

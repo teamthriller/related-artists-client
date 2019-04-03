@@ -29,3 +29,11 @@ test('test getting an artist', () => {
     expect(data).toEqual(expected);
   });
 });
+
+test('getting a nonexistant artist should return null', () => {
+  return schema.getArtist().then((data) => {
+    console.log(data);
+  }).catch((err) => {
+    console.log(err);
+  });
+});

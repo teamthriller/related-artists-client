@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ArtistList from './ArtistList.jsx';
+import ArtistMenu from './ArtistMenu.jsx';
 
 
 const widthandheight = (windowsize) => {
@@ -31,15 +32,19 @@ class App extends React.Component {
       artistid: '1',
       artistinfo: {},
       windowsize: { width: '10%', height: '10%' },
+      showmenu: false,
+      menuposition: { top: 0, left: 0 },
     };
     this.fetchArtistData = this.fetchArtistData.bind(this);
     this.updatewindow = this.updatewindow.bind(this);
+    this.handlerightclick = this.handlerightclick.bind(this);
   }
 
   componentDidMount() {
     this.fetchArtistData();
     this.updatewindow();
     window.addEventListener('resize', this.updatewindow);
+    document.addEventListener('contextmenu', this.handlerightclick);
   }
 
   updatewindow() {
@@ -49,8 +54,16 @@ class App extends React.Component {
     this.render();
   }
 
-  handlerightclick() {
-    return this.state;
+  handlerightclick(event) {
+    event.preventDefault();
+    const classtype = event.target.className.split('__')[0];
+    if (classtype === 'Artist') {
+      this.setState({ showmenu: true });
+      const newpos = { left: event.screenX, top: event.screenY };
+      this.setState({ menuposition: newpos });
+    } else {
+      this.setState({ showmenu: false });
+    }
   }
 
   handleclick() {
@@ -72,10 +85,17 @@ class App extends React.Component {
     if (Object.keys(this.state.artistinfo).length === 0) {
       component = <div>empty</div>;
     } else {
-      component = <ArtistList artist={this.state.artistinfo} size={this.state.windowsize} />;
+      component = <ArtistList artist={this.state.artistinfo} size={this.state.windowsize} rightclick={this.handlerightclick} />;
+    }
+    let menu;
+    if (this.state.showmenu) {
+      menu = <ArtistMenu pos={this.state.menuposition} />;
+    } else {
+      menu = <div />;
     }
     return (
       <AppStyle>
+        {menu}
         {component}
       </AppStyle>
     );

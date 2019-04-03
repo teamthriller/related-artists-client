@@ -21,6 +21,7 @@ const fetchImage = () => {
   return fetch(`http://source.unsplash.com/collection/${collectionid}/${imagewidth}x${imageheight}`).then((response) => response.url);
 };
 
+/* istanbul ignore next */
 const seeddata = () => {
   mongoose.connect('mongodb://localhost/artists');
   try {
