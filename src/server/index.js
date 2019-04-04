@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const db = require('../database/schema');
 
+
 const app = express();
 const port = 3000;
 
@@ -16,4 +17,15 @@ app.get('/artists', (req, res) => {
   }).catch(() => {
     res.json({ err: 'cant access database' });
   });
+});
+
+app.get('/data/artist/', (req, res) => {
+  const userid = req.query.id;
+  db.getArtist(userid).then((data) => {
+    res.json(data);
+  });
+});
+
+app.get('/icon', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/playicon.png'));
 });

@@ -29,5 +29,8 @@ module.exports = {
     'guard-for-in': 'off',
     'react/jsx-filename-extension': 'off',
     'arrow-body-style' : 'off',
+    'import/extensions': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/prop-types': 'off',
   },
 };
