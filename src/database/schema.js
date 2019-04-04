@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const fetch = require('node-fetch');
+mongoose.Promise = require('bluebird');
+
 
 const { Schema } = mongoose;
-mongoose.Promise = require('bluebird');
+
+mongoose.connect('mongodb://localhost/artists');
 
 const artistSchema = new Schema({
   _id: String,
@@ -23,7 +26,6 @@ const fetchImage = () => {
 
 /* istanbul ignore next */
 const seeddata = () => {
-  mongoose.connect('mongodb://localhost/artists');
   try {
     Artist.collection.drop();
   } catch (err) {
@@ -50,10 +52,8 @@ const seeddata = () => {
 };
 
 const getdata = () => {
-  mongoose.connect('mongodb://localhost/artists');
   return new Promise((resolve, reject) => {
     Artist.find({}, (err, data) => {
-      mongoose.connection.close();
       if (err) {
         reject(err);
       } else {
@@ -64,11 +64,9 @@ const getdata = () => {
 };
 
 const getArtist = (id) => {
-  mongoose.connect('mongodb://localhost/artists');
   return new Promise((resolve, reject) => {
     const query = Artist.where({ _id: id });
     query.findOne((err, data) => {
-      mongoose.connection.close();
       if (err) {
         reject(err);
       } else {

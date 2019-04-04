@@ -4,12 +4,9 @@ const { configure, mount } = require('enzyme');
 const fetch = require('node-fetch');
 const Adapter = require('enzyme-adapter-react-15');
 // const styled = require('styled-components');
-// const renderer = require('react-test-renderer');
 const App = require('../../src/client/components/App.jsx');
 const ArtistList = require('../../src/client/components/ArtistList.jsx');
 const ArtistMenu = require('../../src/client/components/ArtistMenu.jsx');
-// const sinon = require('sinon');
-
 
 configure({ adapter: new Adapter() });
 
