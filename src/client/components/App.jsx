@@ -59,7 +59,7 @@ class App extends React.Component {
     const classtype = event.target.className.split('__')[0];
     if (classtype === 'Artist') {
       this.setState({ showmenu: true });
-      const newpos = { left: event.screenX, top: event.screenY };
+      const newpos = { left: event.clientX, top: event.clientY };
       this.setState({ menuposition: newpos });
     } else {
       this.setState({ showmenu: false });
