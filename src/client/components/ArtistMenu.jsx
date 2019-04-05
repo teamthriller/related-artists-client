@@ -12,7 +12,8 @@ class ArtistMenu extends React.Component {
 
   updatestyle() {
     this.Menu = styled.ul`
-      background-color: white;
+      background-color: rgb(50,50,50);
+      color: rgb(180,180,180);
       position: fixed;
       z-index: 2;
       top: ${this.props.pos.top};

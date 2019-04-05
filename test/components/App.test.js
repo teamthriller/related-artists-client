@@ -1,9 +1,7 @@
-// tests for App react component
 const React = require('react');
 const { configure, mount } = require('enzyme');
 const fetch = require('node-fetch');
 const Adapter = require('enzyme-adapter-react-15');
-// const styled = require('styled-components');
 const App = require('../../src/client/components/App.jsx');
 const ArtistList = require('../../src/client/components/ArtistList.jsx');
 const ArtistMenu = require('../../src/client/components/ArtistMenu.jsx');
@@ -65,3 +63,22 @@ test('check that the Artist Menu renders', () => {
 });
 
 // event tests
+
+test('should render menu after event click', () => {
+  global.fetch = fetch;
+  const AppComponent = App.default;
+  return new Promise((resolve) => {
+    const wrap = mount(<AppComponent />);
+    setTimeout(resolve.bind(null, wrap), 1000);
+  }).then((wrap) => {
+    wrap.update();
+    return new Promise((resolve) => {
+      wrap.find('Artist').at(0).childAt(0).childAt(0).simulate('click');
+      setTimeout(resolve.bind(null, wrap), 1000);
+    }).then((newwrap) => {
+      newwrap.update();
+      expect(newwrap.find('ArtistMenu').length).toEqual(1);
+      newwrap.unmount();
+    });
+  });
+});
