@@ -73,7 +73,8 @@ test('should render menu after event click', () => {
   }).then((wrap) => {
     wrap.update();
     return new Promise((resolve) => {
-      wrap.find('Artist').at(0).childAt(0).childAt(0).simulate('click');
+      wrap.find('Artist').at(0).childAt(0).childAt(0)
+        .simulate('click');
       setTimeout(resolve.bind(null, wrap), 1000);
     }).then((newwrap) => {
       newwrap.update();

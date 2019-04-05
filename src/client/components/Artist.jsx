@@ -54,10 +54,10 @@ class Artist extends React.Component {
       opacity = 0.7;
     }
     return (
-      <div>
+      <div onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave}>
         <ImageStyle>
-          <Image src={this.props.artist.image} alt="related artist" style={{ opacity: (1 - opacity) }} height="100%" width="100%" onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave} />
-          <PlayButtonImage src="http://localhost:3000/icon" alt="play" style={{ opacity }} height="30%" width="30%" onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave} />
+          <Image src={this.props.artist.image} alt="related artist" style={{ opacity: (1 - opacity) }} height="100%" width="100%" />
+          <PlayButtonImage src="http://localhost:3000/icon" alt="play" style={{ opacity }} height="30%" width="30%" />
         </ImageStyle>
         <TextStyle>
           { this.props.artist.name }
