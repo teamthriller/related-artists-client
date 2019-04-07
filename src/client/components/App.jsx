@@ -57,7 +57,7 @@ class App extends React.Component {
   handlerightclick(event) {
     event.preventDefault();
     const classtype = event.target.className.split('__')[0];
-    if (classtype === 'Artist') {
+    if (classtype === 'Artist' && event.type === 'contextmenu') {
       this.setState({ showmenu: true });
       const newpos = { left: event.clientX, top: event.clientY };
       this.setState({ menuposition: newpos });

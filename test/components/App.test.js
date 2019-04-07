@@ -57,7 +57,7 @@ test('check that the Artist Menu renders', () => {
   }).then((wrap) => {
     wrap.update();
     expect(wrap.find('ul').length).toEqual(1);
-    expect(wrap.find('li').length).toEqual(3);
+    expect(wrap.find('div').length).toEqual(3);
     wrap.unmount();
   });
 });

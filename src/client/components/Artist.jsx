@@ -25,7 +25,7 @@ const PlayButtonImage = styled.img`
   position: relative;
   top: -65%;
   left: 35%;
-  z-index: 2;
+  z-index: 1;
 `;
 
 class Artist extends React.Component {
