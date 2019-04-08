@@ -51,5 +51,5 @@ const getArtist = (id) => {
 
 // seeddata();
 module.exports = {
-  seeddata, fetchImage, getdata, getArtist, db,
+  fetchImage, getdata, getArtist, db,
 };
