@@ -12,7 +12,7 @@
   "author": "Dmitri Tarasov",
   "license": "ISC",
   "devDependencies": {
-    "@babel-jest": "^24.5.0",
+    "babel-jest": "^24.5.0",
     "@babel/core": "^7.4.0",
     "@babel/polyfill": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
