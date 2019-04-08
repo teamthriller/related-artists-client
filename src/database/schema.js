@@ -5,7 +5,7 @@ mongoose.Promise = require('bluebird');
 
 const { Schema } = mongoose;
 
-mongoose.connect('mongodb://localhost/artists');
+const db = mongoose.connect('mongodb://localhost/artists');
 
 const artistSchema = new Schema({
   _id: String,
@@ -78,5 +78,5 @@ const getArtist = (id) => {
 
 // seeddata();
 module.exports = {
-  seeddata, fetchImage, getdata, getArtist,
+  seeddata, fetchImage, getdata, getArtist, db,
 };

@@ -56,8 +56,7 @@ test('check that the Artist Menu renders', () => {
     setTimeout(resolve.bind(null, wrap), 1000);
   }).then((wrap) => {
     wrap.update();
-    expect(wrap.find('ul').length).toEqual(1);
-    expect(wrap.find('div').length).toEqual(3);
+    expect(wrap.find('div').length).toEqual(5);
     wrap.unmount();
   });
 });
@@ -66,6 +65,7 @@ test('check that the Artist Menu renders', () => {
 
 test('should render menu after event click', () => {
   global.fetch = fetch;
+  // const preventDefault = { preventDefault: () => {} };
   const AppComponent = App.default;
   return new Promise((resolve) => {
     const wrap = mount(<AppComponent />);
@@ -74,7 +74,7 @@ test('should render menu after event click', () => {
     wrap.update();
     return new Promise((resolve) => {
       wrap.find('Artist').at(0).childAt(0).childAt(0)
-        .simulate('click');
+        .simulate('contextmenu', { preventDefault: () => {} });
       setTimeout(resolve.bind(null, wrap), 1000);
     }).then((newwrap) => {
       newwrap.update();

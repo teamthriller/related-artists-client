@@ -11,7 +11,7 @@ class ArtistMenu extends React.Component {
   }
 
   updateMenu() {
-    this.Menu = styled.ul`
+    this.Menu = styled.div`
       background-color: rgb(50,50,50);
       color: rgb(180,180,180);
       position: fixed;
