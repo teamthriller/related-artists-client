@@ -6,12 +6,54 @@ const App = require('../../src/client/components/App.jsx');
 const ArtistList = require('../../src/client/components/ArtistList.jsx');
 const ArtistMenu = require('../../src/client/components/ArtistMenu.jsx');
 
+
 configure({ adapter: new Adapter() });
+
+const appfetch = () => {
+  let dummydata = {
+    _id: '2',
+    name: '2',
+    bio: 'bio of 2',
+    image: 'https://images.unsplash.com/photo-1532498797808-9b734f29e551?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&h=480&fit=crop&ixid=eyJhcHBfaWQiOjF9',
+    relatedartists: [3, 22],
+    __v: 0,
+  };
+  return new Promise((resolve) => {
+    resolve({ json: () => { return dummydata; } });
+  });
+};
+
+const relatedfetch = (search) => {
+  let dummydata = {};
+  const id = parseInt(search.split('=')[1], 10);
+  if (id === 3) {
+    dummydata = {
+      _id: '3',
+      name: '3',
+      bio: 'bio of 3',
+      image: 'https://images.unsplash.com/photo-1517706355179-794182e1e0d4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&h=480&fit=crop&ixid=eyJhcHBfaWQiOjF9',
+      relatedartists: [4, 23],
+      __v: 0,
+    };
+  } else {
+    dummydata = {
+      _id: '22',
+      name: '22',
+      bio: 'bio of 22',
+      image: 'https://images.unsplash.com/photo-1519643225200-94e79e383724?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&h=480&fit=crop&ixid=eyJhcHBfaWQiOjF9',
+      relatedartists: [23, 42],
+      __v: 0,
+    };
+  }
+  return new Promise((resolve) => {
+    resolve({ json: () => { return dummydata; } });
+  });
+};
 
 // dom tree tests.
 
 test('check that App dom element exists', () => {
-  global.fetch = fetch;
+  global.fetch = appfetch;
   const AppComponent = App.default;
   return new Promise((resolve) => {
     const wrap = mount(<AppComponent />);
@@ -24,10 +66,10 @@ test('check that App dom element exists', () => {
 });
 
 test('check that ArtistList is in the dom', () => {
-  global.fetch = fetch; // need to redefine fetch as node doesn't have fetch defined
+  global.fetch = relatedfetch; // need to redefine fetch as node doesn't have fetch defined
   const Component = ArtistList.default;
   return new Promise((resolve) => {
-    const wrap = mount(<Component artist={{ relatedartists: [2, 10] }} size={{ width: '25%', height: '25%' }} />);
+    const wrap = mount(<Component artist={{ relatedartists: [3, 22] }} size={{ width: '25%', height: '25%' }} />);
     setTimeout(resolve.bind(null, wrap), 1000);
   }).then((wrap) => {
     wrap.update();
@@ -37,10 +79,10 @@ test('check that ArtistList is in the dom', () => {
 });
 
 test('check that ArtistList renders 2 related artists', () => {
-  global.fetch = fetch; // need to redefine fetch as node doesn't have fetch defined
+  global.fetch = relatedfetch; // need to redefine fetch as node doesn't have fetch defined
   const Component = ArtistList.default;
   return new Promise((resolve) => {
-    const wrap = mount(<Component artist={{ relatedartists: [2, 10] }} size={{ width: '25%', height: '25%' }} />);
+    const wrap = mount(<Component artist={{ relatedartists: [3, 22] }} size={{ width: '25%', height: '25%' }} />);
     setTimeout(resolve.bind(null, wrap), 1000);
   }).then((wrap) => {
     wrap.update();

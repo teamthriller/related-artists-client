@@ -12,12 +12,12 @@
   "author": "Dmitri Tarasov",
   "license": "ISC",
   "devDependencies": {
-    "babel-jest": "^24.5.0",
     "@babel/core": "^7.4.0",
     "@babel/polyfill": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
     "body-parser": "^1.17.0",
@@ -47,7 +47,7 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "body-parser": "^1.17.0",
-    "express": "^4.15.0",
+    "express": "^4.16.4",
     "mongodb": "^3.2.2",
     "mongoose": "^4.9.6",
     "node-fetch": "^2.3.0",

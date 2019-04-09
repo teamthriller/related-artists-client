@@ -4,7 +4,7 @@ const db = require('../database/schema');
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 app.use(express.static(path.join(__dirname, '/../../public')));
