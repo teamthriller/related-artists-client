@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 const fetch = require('node-fetch');
 mongoose.Promise = require('bluebird');
 
+require('babel-polyfill');
+
 
 const { Schema } = mongoose;
 
-const db = mongoose.connect('mongodb://localhost/artists');
+const db = mongoose.connect('mongodb://localhost/artists2');
 
 const artistSchema = new Schema({
   _id: String,
@@ -42,15 +44,23 @@ const seeddata = () => {
     count += 1;
   }
   Promise.all(imageurls).then((images) => {
+    const dbpromises = [];
     images.forEach((image, index) => {
-      Artist.create({
+      dbpromises.push(Artist.create({
         _id: `${index}`, name: `${index}`, bio: `bio of ${index}`, image, relatedartists: [(index + 1) % 100, (index + 20) % 100],
-      });
+      }));
     });
-  }).then(() => {
-    console.log('done seeding');
-    db.connection.close();
+    Promise.all(dbpromises).then(() => {
+      console.log('done seeding');
+      db.connection.close();
+    });
+  }).catch((err) => {
+    console.log(err);
   });
+  // .then(() => {
+  //   console.log('done seeding');
+  //   db.connection.close();
+  // });
 };
 
 seeddata();
