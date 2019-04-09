@@ -6,7 +6,7 @@
     "client": "webpack -d --watch",
     "server": "nodemon src/server/index.js",
     "test": "jest --coverage",
-    "seeddata": "node seeddata.js",
+    "seeddata": "node src/database/seeddata.js",
     "lint": "eslint app.js"
   },
   "author": "Dmitri Tarasov",
