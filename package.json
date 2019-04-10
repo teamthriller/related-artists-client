@@ -52,6 +52,7 @@
     "mongodb": "^3.2.2",
     "mongoose": "^4.9.6",
     "node-fetch": "^2.3.0",
+    "nodemon": "^1.18.11",
     "path": "^0.12.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

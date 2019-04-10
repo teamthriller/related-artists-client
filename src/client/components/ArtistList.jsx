@@ -4,7 +4,7 @@ import Artist from './Artist.jsx';
 
 
 const getRelatedArtist = (id) => {
-  return fetch(`http://localhost:3000/data/artist?id=${id}`).then((response) => {
+  return fetch(`http://localhost:3100/data/artist?id=${id}`).then((response) => {
     return response.json();
   });
 };
