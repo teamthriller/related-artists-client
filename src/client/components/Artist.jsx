@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 // import logo from '../../../public/playicon.png';
 
 const ImageStyle = styled.div`
@@ -25,7 +26,7 @@ const PlayButtonImage = styled.img`
   position: relative;
   top: -65%;
   left: 35%;
-  z-index: 2;
+  z-index: 1;
 `;
 
 class Artist extends React.Component {
@@ -54,10 +55,10 @@ class Artist extends React.Component {
       opacity = 0.7;
     }
     return (
-      <div>
+      <div onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave}>
         <ImageStyle>
-          <Image src={this.props.artist.image} alt="related artist" style={{ opacity: (1 - opacity) }} height="100%" width="100%" onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave} />
-          <PlayButtonImage src="http://localhost:3000/icon" alt="play" style={{ opacity }} height="30%" width="30%" onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave} />
+          <Image src={this.props.artist.image} alt="related artist" style={{ opacity: (1 - opacity) }} height="100%" width="100%" />
+          <PlayButtonImage src="http://localhost:3100/icon" alt="play" style={{ opacity }} height="30%" width="30%" />
         </ImageStyle>
         <TextStyle>
           { this.props.artist.name }

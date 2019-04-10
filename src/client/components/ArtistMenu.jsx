@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import MenuButton from './MenuButton.jsx';
 
 
 class ArtistMenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
     this.Menu = '';
+    this.updateMenu = this.updateMenu.bind(this);
   }
 
-
-  updatestyle() {
-    this.Menu = styled.ul`
-      background-color: white;
+  updateMenu() {
+    this.Menu = styled.div`
+      background-color: rgb(50,50,50);
+      color: rgb(180,180,180);
       position: fixed;
       z-index: 2;
       top: ${this.props.pos.top};
@@ -21,14 +22,14 @@ class ArtistMenu extends React.Component {
   }
 
   render() {
-    this.updatestyle();
+    this.updateMenu();
     const { Menu } = this;
     return (
       <div className="contextMenu">
         <Menu className="menu-options">
-          <li className="menu-option">Start Radio</li>
-          <li className="menu-option">Save to Your Library</li>
-          <li className="menu-option">Copy Artist Link</li>
+          <MenuButton text="Start Radio" />
+          <MenuButton text="Save to Your Library" />
+          <MenuButton text="Copy Artist Link" />
         </Menu>
       </div>
     );

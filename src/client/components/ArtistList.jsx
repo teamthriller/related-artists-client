@@ -4,7 +4,7 @@ import Artist from './Artist.jsx';
 
 
 const getRelatedArtist = (id) => {
-  return fetch(`http://localhost:3000/data/artist?id=${id}`).then((response) => {
+  return fetch(`http://localhost:3100/data/artist?id=${id}`).then((response) => {
     return response.json();
   });
 };
@@ -65,7 +65,7 @@ class ArtistList extends React.Component {
       <List>
         {this.state.artists.map((artistdata) => {
           const { _id } = artistdata;
-          return <Icon key={_id} onClick={this.props.rightclick}><Artist artist={artistdata} /></Icon>;
+          return <Icon key={_id} onContextMenu={this.props.rightclick}><Artist artist={artistdata} /></Icon>;
         })}
       </List>
     );

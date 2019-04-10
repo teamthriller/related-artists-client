@@ -59,7 +59,7 @@ class App extends React.Component {
     const classtype = event.target.className.split('__')[0];
     if (classtype === 'Artist') {
       this.setState({ showmenu: true });
-      const newpos = { left: event.clientX, top: event.clientY };
+      const newpos = { left: event.clientX + 10, top: event.clientY + 10 };
       this.setState({ menuposition: newpos });
     } else {
       this.setState({ showmenu: false });
@@ -72,7 +72,7 @@ class App extends React.Component {
 
   fetchArtistData() {
     // need to find an initial artist.
-    fetch(`http://localhost:3000/data/artist?id=${this.state.artistid}`).then((response) => {
+    fetch(`http://localhost:3100/data/artist?id=${this.state.artistid}`).then((response) => {
       return response.json();
     }).then((data) => {
       this.setState({ artistinfo: data });
