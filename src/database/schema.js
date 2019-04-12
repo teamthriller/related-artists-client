@@ -5,7 +5,7 @@ mongoose.Promise = require('bluebird');
 
 const { Schema } = mongoose;
 
-const db = mongoose.connect('mongodb://localhost/relatedartists');
+const db = mongoose.connect('mongodb://database/relatedartists');
 
 const artistSchema = new Schema({
   _id: String,
