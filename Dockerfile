@@ -3,7 +3,5 @@ RUN mkdir -p /src/app
 WORKDIR /src/app
 COPY . /src/app
 RUN npm install
-EXPOSE 3111
-CMD ["npm", "run", "seeddata"]
-CMD ["npm", "run", "client"]
-CMD ["npm", "run", "server"]
+EXPOSE 3100
+CMD ["npm", "run", "hi"]

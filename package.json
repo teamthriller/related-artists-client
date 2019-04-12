@@ -7,7 +7,8 @@
     "server": "nodemon src/server/index.js",
     "test": "jest --coverage",
     "seeddata": "node src/database/seeddata.js",
-    "lint": "eslint app.js"
+    "lint": "eslint app.js",
+    "hi": "node src/server/index.js"
   },
   "author": "Dmitri Tarasov",
   "license": "ISC",

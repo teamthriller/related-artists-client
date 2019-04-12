@@ -82,7 +82,7 @@ class App extends React.Component {
 
   render() {
     let component;
-    if (Object.keys(this.state.artistinfo).length === 0) {
+    if (Object.is(this.state.artistinfo, null)) {
       component = <div>empty</div>;
     } else {
       component = <ArtistList artist={this.state.artistinfo} size={this.state.windowsize} rightclick={this.handlerightclick} />;
