@@ -45,6 +45,11 @@ class App extends React.Component {
     this.updatewindow();
     window.addEventListener('resize', this.updatewindow);
     document.addEventListener('contextmenu', this.handlerightclick);
+
+    const context = this;
+    window.onhashchange = () => {
+      context.forceUpdate();
+    };
   }
 
   updatewindow() {
@@ -93,11 +98,16 @@ class App extends React.Component {
     } else {
       menu = <div />;
     }
+    if (window.location.hash === '#related') {
+      return (
+        <AppStyle>
+          {menu}
+          {component}
+        </AppStyle>
+      );
+    }
     return (
-      <AppStyle>
-        {menu}
-        {component}
-      </AppStyle>
+      <div />
     );
   }
 }
