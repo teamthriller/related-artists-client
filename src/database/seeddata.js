@@ -7,7 +7,7 @@ require('babel-polyfill');
 
 const { Schema } = mongoose;
 
-const db = mongoose.connect('mongodb://database/relatedartists');
+const db = mongoose.connect('mongodb://database:27017/relatedartists');
 
 const artistSchema = new Schema({
   _id: String,

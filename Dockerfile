@@ -4,4 +4,4 @@ WORKDIR /src/app
 COPY . /src/app
 RUN npm install
 EXPOSE 3100
-CMD ["npm", "run", "hi"]
+CMD ["npm", "run", "serverDocker"]

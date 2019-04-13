@@ -80,14 +80,18 @@ class App extends React.Component {
     fetch(`http://localhost:3100/data/artist?id=${this.state.artistid}`).then((response) => {
       return response.json();
     }).then((data) => {
-      this.setState({ artistinfo: data });
+      let param = {};
+      if (data !== null) {
+        param = data;
+      }
+      this.setState({ artistinfo: param });
     });
   }
 
 
   render() {
     let component;
-    if (Object.is(this.state.artistinfo, null)) {
+    if (Object.keys(this.state.artistinfo).length === 0) {
       component = <div>empty</div>;
     } else {
       component = <ArtistList artist={this.state.artistinfo} size={this.state.windowsize} rightclick={this.handlerightclick} />;
