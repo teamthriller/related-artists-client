@@ -65,7 +65,7 @@ class Artist extends React.Component {
       <div onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave}>
         <ImageStyle>
           <Image src={this.props.artist.image} alt="related artist" style={{ opacity: (1 - opacity) }} height="100%" width="100%" />
-          <PlayButtonImage src="http://localhost:3100/icon" alt="play" style={{ opacity }} height="30%" width="30%" />
+          <PlayButtonImage src="/icon" alt="play" style={{ opacity }} height="30%" width="30%" />
         </ImageStyle>
         <TextStyle>
           { this.props.artist.name }

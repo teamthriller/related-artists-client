@@ -4,11 +4,12 @@
   "description": "",
   "scripts": {
     "client": "webpack -d --watch",
-    "server": "nodemon src/server/index.js",
+    "serverdev": "nodemon src/server/index.js",
+    "server": "node src/server/index.js",
     "test": "jest --coverage",
     "seeddata": "node src/database/seeddata.js",
     "lint": "eslint app.js",
-    "serverDocker": "node src/server/index.js"
+    "deploy": "npm run seeddata & npm run server"
   },
   "author": "Dmitri Tarasov",
   "license": "ISC",
