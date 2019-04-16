@@ -6,26 +6,33 @@ import styled from 'styled-components';
 
 const ImageStyle = styled.div`
   border-radius: 50%;
-  width: 100%;
-  height: 100%;
+  width: 150px;
+  height: 150px;
   background-color: white;
   overflow: hidden;
   alignItems: 'center';
 `;
 const TextStyle = styled.div`
   font-size: 2em;
+  width: 150px;
   text-align: center;
 `;
 
 const Image = styled.img`
   position: relative; 
+  height: 200px;
+  width: 200px;
+  top: 0;
+  left: 0;
   z-index: 1;
 `;
 
 const PlayButtonImage = styled.img`
   position: relative;
-  top: -65%;
+  top: -95%;
   left: 35%;
+  width: 30%;
+  height: 30%;
   z-index: 1;
 `;
 
@@ -58,7 +65,7 @@ class Artist extends React.Component {
       <div onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave}>
         <ImageStyle>
           <Image src={this.props.artist.image} alt="related artist" style={{ opacity: (1 - opacity) }} height="100%" width="100%" />
-          <PlayButtonImage src="http://localhost:3100/icon" alt="play" style={{ opacity }} height="30%" width="30%" />
+          <PlayButtonImage src="/icon" alt="play" style={{ opacity }} height="30%" width="30%" />
         </ImageStyle>
         <TextStyle>
           { this.props.artist.name }

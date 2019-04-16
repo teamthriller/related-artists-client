@@ -45,6 +45,11 @@ class App extends React.Component {
     this.updatewindow();
     window.addEventListener('resize', this.updatewindow);
     document.addEventListener('contextmenu', this.handlerightclick);
+
+    const context = this;
+    window.onhashchange = () => {
+      context.forceUpdate();
+    };
   }
 
   updatewindow() {
@@ -59,7 +64,7 @@ class App extends React.Component {
     const classtype = event.target.className.split('__')[0];
     if (classtype === 'Artist') {
       this.setState({ showmenu: true });
-      const newpos = { left: event.clientX + 10, top: event.clientY + 10 };
+      const newpos = { left: event.pageX + 10, top: event.pageY + 10 };
       this.setState({ menuposition: newpos });
     } else {
       this.setState({ showmenu: false });
@@ -72,10 +77,14 @@ class App extends React.Component {
 
   fetchArtistData() {
     // need to find an initial artist.
-    fetch(`http://localhost:3100/data/artist?id=${this.state.artistid}`).then((response) => {
+    fetch(`/data/artist?id=${this.state.artistid}`).then((response) => {
       return response.json();
     }).then((data) => {
-      this.setState({ artistinfo: data });
+      let param = {};
+      if (data !== null) {
+        param = data;
+      }
+      this.setState({ artistinfo: param });
     });
   }
 
@@ -93,11 +102,16 @@ class App extends React.Component {
     } else {
       menu = <div />;
     }
+    if (window.location.hash === '#related') {
+      return (
+        <AppStyle>
+          {menu}
+          {component}
+        </AppStyle>
+      );
+    }
     return (
-      <AppStyle>
-        {menu}
-        {component}
-      </AppStyle>
+      <div />
     );
   }
 }
