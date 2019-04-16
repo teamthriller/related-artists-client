@@ -49,8 +49,8 @@ class ArtistList extends React.Component {
     this.Icon = styled.div`
       color: white;
       padding: 32px;
-      width: ${this.props.size.width};
-      height: ${this.props.size.height};
+      width: 100%;
+      height: 100%;
       letter-spacing: .015em;
     `;
   }
