@@ -39,9 +39,5 @@ CREATE TABLE artists (
 -- ('2', 'Crap Dragons', 'https://yoyoyoyo'),
 -- ('1', 'The Measles', 'https://yoyoyoyo');
 
-INSERT INTO artists (artist_name, artist_genre, artist_photo)
-VALUES
-('Rock', 'RockPaperScissors', 'https://yoyoyoyo'),
-('Opera', 'Holy Spam', 'https://yoyoyoyo'),
-('Rock', 'Crap Dragons', 'https://yoyoyoyo'),
-('Pop', 'The Measles', 'https://yoyoyoyo');
+COPY artists(artist_name, artist_genre, artist_photo)
+FROM '/Users/J-radical/Desktop/Immersive/related-artists-client/SDC/data.csv' DELIMITER ',' CSV HEADER;
