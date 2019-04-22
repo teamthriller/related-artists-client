@@ -1,5 +1,4 @@
 /* eslint-disable comma-dangle */
-const faker = require('faker');
 const fs = require('fs');
 
 const bandNameFirst1 = [
@@ -303,7 +302,7 @@ const createFakeArtists = () => {
       );
       let artistGenre = randomGenre();
       let artistPhoto = 'PhotoURL';
-      let artist = ` ${artistName}, ${artistGenre}, ${artistPhoto}`;
+      let artist = `${artistName}, ${artistGenre}, ${artistPhoto}`;
 
       fakeArtists += `${artist}\n`;
     }
