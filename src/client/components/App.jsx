@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import ArtistList from './ArtistList.jsx';
 import ArtistMenu from './ArtistMenu.jsx';
 
-
 // const widthandheight = (windowsize) => {
 //   let size;
 //   const { width } = windowsize;
@@ -22,7 +21,7 @@ import ArtistMenu from './ArtistMenu.jsx';
 
 const AppStyle = styled.div`
   min-height: 100%;
-  background-color: rgb(30,30,30);
+  background-color: rgb(30, 30, 30);
 `;
 
 class App extends React.Component {
@@ -32,7 +31,7 @@ class App extends React.Component {
       artistid: '1',
       artistinfo: {},
       showmenu: false,
-      menuposition: { top: 0, left: 0 },
+      menuposition: { top: 0, left: 0 }
     };
     this.fetchArtistData = this.fetchArtistData.bind(this);
     this.handlerightclick = this.handlerightclick.bind(this);
@@ -67,24 +66,42 @@ class App extends React.Component {
 
   fetchArtistData() {
     // need to find an initial artist.
-    fetch(`/data/artist?id=${this.state.artistid}`).then((response) => {
-      return response.json();
-    }).then((data) => {
-      let param = {};
-      if (data !== null) {
-        param = data;
-      }
-      this.setState({ artistinfo: param });
-    });
+    fetch('artists/The%20Brainy%20Sauce%20City')
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        let param = {};
+        if (data !== null) {
+          param = data;
+        }
+        this.setState({ artistinfo: param });
+      });
   }
 
+  // fetchArtistData() {
+  //   // need to find an initial artist.
+  //   fetch('http://localhost:3100/artists/The%20Brainy%20Sauce%20City')
+  //     .then(response => {
+  //       response.json();
+  //     })
+  //     .then(data => {
+  //       this.setState({ artistinfo: data });
+  //       console.log(this.state.artistinfo);
+  //     });
+  // }
 
   render() {
     let component;
     if (Object.keys(this.state.artistinfo).length === 0) {
       component = <div>empty</div>;
     } else {
-      component = <ArtistList artist={this.state.artistinfo} rightclick={this.handlerightclick} />;
+      component = (
+        <ArtistList
+          artist={this.state.artistinfo}
+          rightclick={this.handlerightclick}
+        />
+      );
     }
     let menu;
     if (this.state.showmenu) {
@@ -100,9 +117,7 @@ class App extends React.Component {
         </AppStyle>
       );
     }
-    return (
-      <div />
-    );
+    return <div />;
   }
 }
 export default App;

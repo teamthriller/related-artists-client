@@ -28,4 +28,4 @@ dist/
 *.csv
 
 #credentials
-SDC/archive/login.js
+sdc_sql/archive/login.js

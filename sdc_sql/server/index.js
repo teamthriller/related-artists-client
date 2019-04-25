@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const {
@@ -13,12 +14,14 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '/../../public')));
 
-app.get('/artists', (req, res) => {
-  return getArtists(req, res);
-});
+app.get('/artists', getArtists);
 
 app.get('/artists/:artist', getOneArtist);
 
 app.get('/artists/:artist/related', getRelatedArtists);
+
+app.get('/icon', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/playicon.png'));
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

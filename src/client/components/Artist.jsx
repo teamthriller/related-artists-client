@@ -55,6 +55,36 @@ class Artist extends React.Component {
     this.setState({ hovered: newstate });
   }
 
+  // render() {
+  //   let opacity = 0;
+  //   if (this.state.hovered) {
+  //     opacity = 0.7;
+  //   }
+  //   return (
+  //     <div
+  //       onMouseEnter={this.handlehoverenter}
+  //       onMouseLeave={this.handlehoverleave}
+  //     >
+  //       <ImageStyle>
+  //         <Image
+  //           src={this.props.artist.image}
+  //           alt="related artist"
+  //           style={{ opacity: 1 - opacity }}
+  //           height="100%"
+  //           width="100%"
+  //         />
+  //         <PlayButtonImage
+  //           src="/icon"
+  //           alt="play"
+  //           style={{ opacity }}
+  //           height="30%"
+  //           width="30%"
+  //         />
+  //       </ImageStyle>
+  //       <TextStyle>{this.props.artist.name}</TextStyle>
+  //     </div>
+  //   );
+  // }
   render() {
     let opacity = 0;
     if (this.state.hovered) {
@@ -67,7 +97,7 @@ class Artist extends React.Component {
       >
         <ImageStyle>
           <Image
-            src={this.props.artist.image}
+            src={this.props.artist.artist_image}
             alt="related artist"
             style={{ opacity: 1 - opacity }}
             height="100%"
@@ -81,7 +111,7 @@ class Artist extends React.Component {
             width="30%"
           />
         </ImageStyle>
-        <TextStyle>{this.props.artist.name}</TextStyle>
+        <TextStyle>{this.props.artist.artist_name}</TextStyle>
       </div>
     );
   }

@@ -1,0 +1,11 @@
+config:
+  target: 'http://localhost:3100'
+  phases:
+    - duration: 1
+      arrivalRate: 10
+scenarios:
+  - flow:
+      - get:
+          url: '/artists/The%20Brainy%20Sauce%20City/related'
+      - get:
+          url: '/artists/The%20Brainy%20Sauce%20City'

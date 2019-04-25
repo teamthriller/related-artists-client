@@ -24,8 +24,8 @@ const getRelatedArtists = (req, res) => {
   const queryString1 = `SELECT * FROM artists WHERE artist_name = '${artistName}' LIMIT 1`;
   client.query(queryString1, (err, results) => {
     if (err) console.log(err);
-    const genre = results.rows[0].artist_genre;
-    const queryString2 = `SELECT * FROM artists WHERE artist_genre = '${genre}' LIMIT 12`;
+    const genre = results.rows[0].genre_id;
+    const queryString2 = `SELECT * FROM artists WHERE genre_id = '${genre}' LIMIT 24`;
     client.query(queryString2, (err, results) => {
       if (err) console.log(err);
       res.json(results.rows);
