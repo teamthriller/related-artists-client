@@ -24,3 +24,8 @@ coverage
 build/
 dist/
 
+# Ignore csv files
+*.csv
+
+#credentials
+sdc_sql/archive/login.js

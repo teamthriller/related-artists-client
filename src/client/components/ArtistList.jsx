@@ -2,34 +2,46 @@ import React from 'react';
 import styled from 'styled-components';
 import Artist from './Artist.jsx';
 
-
-const getRelatedArtist = (id) => {
-  return fetch(`/data/artist?id=${id}`).then((response) => {
-    return response.json();
-  });
-};
+// const getRelatedArtist = id => {
+//   return fetch(`/data/artist?id=${id}`).then(response => {
+//     return response.json();
+//   });
+// };
 
 class ArtistList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artists: [],
+      artists: []
     };
     this.List = '';
     this.Icon = '';
+    this.getRelatedArtists = this.getRelatedArtists.bind(this);
   }
 
+  // componentDidMount() {
+  //   const newstate = [];
 
+  //   this.props.artist.relatedartists.forEach(relatedartist => {
+  //     getRelatedArtist(relatedartist).then(artistdata => {
+  //       const component = artistdata;
+  //       newstate.push(component);
+  //       this.setState({ artists: newstate });
+  //     });
+  //   });
+  // }
   componentDidMount() {
-    const newstate = [];
+    this.getRelatedArtists();
+  }
 
-    this.props.artist.relatedartists.forEach((relatedartist) => {
-      getRelatedArtist(relatedartist).then((artistdata) => {
-        const component = artistdata;
-        newstate.push(component);
-        this.setState({ artists: newstate });
+  getRelatedArtists() {
+    fetch('/artists/The%20Brainy%20Sauce%20City/related')
+      .then(response => response.json())
+      .then(artists => {
+        this.setState({
+          artists
+        });
       });
-    });
   }
 
   updatesize() {
@@ -49,11 +61,30 @@ class ArtistList extends React.Component {
     this.Icon = styled.div`
       color: white;
       padding: 32px;
-      width: 100%;
-      height: 100%;
-      letter-spacing: .015em;
+      letter-spacing: 0.015em;
     `;
   }
+
+  //   render() {
+  //     if (this.state.artists.length === 0) {
+  //       return <div>loading artists</div>;
+  //     }
+  //     this.updatesize();
+  //     const { Icon, List } = this;
+  //     return (
+  //       <List>
+  //         {this.state.artists.map(artistdata => {
+  //           const { _id } = artistdata;
+  //           return (
+  //             <Icon key={_id} onContextMenu={this.props.rightclick}>
+  //               <Artist artist={artistdata} />
+  //             </Icon>
+  //           );
+  //         })}
+  //       </List>
+  //     );
+  //   }
+  // }
 
   render() {
     if (this.state.artists.length === 0) {
@@ -63,14 +94,16 @@ class ArtistList extends React.Component {
     const { Icon, List } = this;
     return (
       <List>
-        {this.state.artists.map((artistdata) => {
-          const { _id } = artistdata;
-          return <Icon key={_id} onContextMenu={this.props.rightclick}><Artist artist={artistdata} /></Icon>;
+        {this.state.artists.map(artistdata => {
+          const { artist_id } = artistdata;
+          return (
+            <Icon key={artist_id} onContextMenu={this.props.rightclick}>
+              <Artist artist={artistdata} />
+            </Icon>
+          );
         })}
       </List>
     );
   }
 }
-
-
 export default ArtistList;

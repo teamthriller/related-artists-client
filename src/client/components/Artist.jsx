@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 // import logo from '../../../public/playicon.png';
 
 const ImageStyle = styled.div`
@@ -10,7 +9,7 @@ const ImageStyle = styled.div`
   height: 150px;
   background-color: white;
   overflow: hidden;
-  alignItems: 'center';
+  alignitems: 'center';
 `;
 const TextStyle = styled.div`
   font-size: 2em;
@@ -19,7 +18,7 @@ const TextStyle = styled.div`
 `;
 
 const Image = styled.img`
-  position: relative; 
+  position: relative;
   height: 200px;
   width: 200px;
   top: 0;
@@ -40,7 +39,7 @@ class Artist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hovered: false,
+      hovered: false
     };
     this.handlehoverenter = this.handlehoverenter.bind(this);
     this.handlehoverleave = this.handlehoverleave.bind(this);
@@ -56,20 +55,63 @@ class Artist extends React.Component {
     this.setState({ hovered: newstate });
   }
 
+  // render() {
+  //   let opacity = 0;
+  //   if (this.state.hovered) {
+  //     opacity = 0.7;
+  //   }
+  //   return (
+  //     <div
+  //       onMouseEnter={this.handlehoverenter}
+  //       onMouseLeave={this.handlehoverleave}
+  //     >
+  //       <ImageStyle>
+  //         <Image
+  //           src={this.props.artist.image}
+  //           alt="related artist"
+  //           style={{ opacity: 1 - opacity }}
+  //           height="100%"
+  //           width="100%"
+  //         />
+  //         <PlayButtonImage
+  //           src="/icon"
+  //           alt="play"
+  //           style={{ opacity }}
+  //           height="30%"
+  //           width="30%"
+  //         />
+  //       </ImageStyle>
+  //       <TextStyle>{this.props.artist.name}</TextStyle>
+  //     </div>
+  //   );
+  // }
   render() {
     let opacity = 0;
     if (this.state.hovered) {
       opacity = 0.7;
     }
     return (
-      <div onMouseEnter={this.handlehoverenter} onMouseLeave={this.handlehoverleave}>
+      <div
+        onMouseEnter={this.handlehoverenter}
+        onMouseLeave={this.handlehoverleave}
+      >
         <ImageStyle>
-          <Image src={this.props.artist.image} alt="related artist" style={{ opacity: (1 - opacity) }} height="100%" width="100%" />
-          <PlayButtonImage src="/icon" alt="play" style={{ opacity }} height="30%" width="30%" />
+          <Image
+            src={this.props.artist.artist_image}
+            alt="related artist"
+            style={{ opacity: 1 - opacity }}
+            height="100%"
+            width="100%"
+          />
+          <PlayButtonImage
+            src="/icon"
+            alt="play"
+            style={{ opacity }}
+            height="30%"
+            width="30%"
+          />
         </ImageStyle>
-        <TextStyle>
-          { this.props.artist.name }
-        </TextStyle>
+        <TextStyle>{this.props.artist.artist_name}</TextStyle>
       </div>
     );
   }

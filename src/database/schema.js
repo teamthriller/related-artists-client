@@ -2,9 +2,8 @@ const mongoose = require('mongoose');
 const fetch = require('node-fetch');
 mongoose.Promise = require('bluebird');
 
-
 const { Schema } = mongoose;
-const mongoURI = process.env.DB_URI || 'mongodb://database/relatedartists';
+const mongoURI = process.env.DB_URI || 'mongodb://localhost/relatedartists';
 const db = mongoose.connect(mongoURI);
 
 const artistSchema = new Schema({
@@ -12,7 +11,7 @@ const artistSchema = new Schema({
   name: String,
   bio: String,
   image: String,
-  relatedartists: [],
+  relatedartists: []
 });
 
 const Artist = mongoose.model('Artist', artistSchema);
@@ -21,7 +20,9 @@ const fetchImage = () => {
   const imagewidth = 400;
   const imageheight = 480;
   const collectionid = 1163637;
-  return fetch(`http://source.unsplash.com/collection/${collectionid}/${imagewidth}x${imageheight}`).then((response) => response.url);
+  return fetch(
+    `http://source.unsplash.com/collection/${collectionid}/${imagewidth}x${imageheight}`
+  ).then(response => response.url);
 };
 
 const getdata = () => {
@@ -36,7 +37,7 @@ const getdata = () => {
   });
 };
 
-const getArtist = (id) => {
+const getArtist = id => {
   return new Promise((resolve, reject) => {
     const query = Artist.where({ _id: id });
     query.findOne((err, data) => {
@@ -51,5 +52,8 @@ const getArtist = (id) => {
 
 // seeddata();
 module.exports = {
-  fetchImage, getdata, getArtist, db,
+  fetchImage,
+  getdata,
+  getArtist,
+  db
 };

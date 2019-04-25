@@ -4,10 +4,9 @@ mongoose.Promise = require('bluebird');
 
 require('babel-polyfill');
 
-
 const { Schema } = mongoose;
 
-const mongoURI = process.env.DB_URI || 'mongodb://database/relatedartists';
+const mongoURI = process.env.DB_URI || 'mongodb://localhost/relatedartists';
 const db = mongoose.connect(mongoURI);
 
 const artistSchema = new Schema({
@@ -15,7 +14,7 @@ const artistSchema = new Schema({
   name: String,
   bio: String,
   image: String,
-  relatedartists: [],
+  relatedartists: []
 });
 
 const Artist = mongoose.model('Artist', artistSchema);
@@ -25,7 +24,9 @@ const fetchImage = () => {
   const imagewidth = 400;
   const imageheight = 480;
   const collectionid = 1163637;
-  return fetch(`http://source.unsplash.com/collection/${collectionid}/${imagewidth}x${imageheight}`).then((response) => response.url);
+  return fetch(
+    `http://source.unsplash.com/collection/${collectionid}/${imagewidth}x${imageheight}`
+  ).then(response => response.url);
 };
 
 /* istanbul ignore next */
@@ -44,20 +45,28 @@ const seeddata = () => {
     imageurls.push(fetchImage());
     count += 1;
   }
-  Promise.all(imageurls).then((images) => {
-    const dbpromises = [];
-    images.forEach((image, index) => {
-      dbpromises.push(Artist.create({
-        _id: `${index}`, name: `${index}`, bio: `bio of ${index}`, image, relatedartists: [(index + 1) % 100, (index + 20) % 100],
-      }));
+  Promise.all(imageurls)
+    .then(images => {
+      const dbpromises = [];
+      images.forEach((image, index) => {
+        dbpromises.push(
+          Artist.create({
+            _id: `${index}`,
+            name: `${index}`,
+            bio: `bio of ${index}`,
+            image,
+            relatedartists: [(index + 1) % 100, (index + 20) % 100]
+          })
+        );
+      });
+      Promise.all(dbpromises).then(() => {
+        console.log('done seeding');
+        db.connection.close();
+      });
+    })
+    .catch(err => {
+      console.log(err);
     });
-    Promise.all(dbpromises).then(() => {
-      console.log('done seeding');
-      db.connection.close();
-    });
-  }).catch((err) => {
-    console.log(err);
-  });
   // .then(() => {
   //   console.log('done seeding');
   //   db.connection.close();
