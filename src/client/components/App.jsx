@@ -66,7 +66,7 @@ class App extends React.Component {
 
   fetchArtistData() {
     // need to find an initial artist.
-    fetch('artists/The%20Brainy%20Sauce%20City')
+    fetch('/artists/234142')
       .then(response => {
         return response.json();
       })

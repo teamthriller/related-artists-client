@@ -1,24 +1,28 @@
 require('newrelic');
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
+
 const {
   getArtists,
   getOneArtist,
-  getRelatedArtists
+  getRelatedArtists,
+  checkRedisCache
 } = require('./controllers.js');
 
 // const db = require('./queries.js');
-const port = 3100;
+const port = process.env.PORT || 3100;
 
 const app = express();
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, '/../../public')));
 
 app.get('/artists', getArtists);
 
-app.get('/artists/:artist', getOneArtist);
+app.get('/artists/:artistId', getOneArtist);
 
-app.get('/artists/:artist/related', getRelatedArtists);
+app.get('/artists/:artistId/related', checkRedisCache, getRelatedArtists);
 
 app.get('/icon', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/playicon.png'));
