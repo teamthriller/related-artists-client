@@ -58,4 +58,5 @@ FROM '/Users/J-radical/Desktop/Immersive/related-artists-client/sdc_sql/data.csv
 ALTER TABLE artists
 ADD FOREIGN KEY (genre_id) REFERENCES genres (id);
 
-CREATE INDEX index_genre ON artists(genre_id);
+CREATE INDEX index_genre ON artists (genre_id);
+CREATE INDEX index_artist ON artists (artist_id);
