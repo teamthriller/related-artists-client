@@ -35,7 +35,7 @@ class ArtistList extends React.Component {
   }
 
   getRelatedArtists() {
-    fetch('/artists/The%20Brainy%20Sauce%20City/related')
+    fetch('/artists/234142/related')
       .then(response => response.json())
       .then(artists => {
         this.setState({

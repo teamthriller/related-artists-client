@@ -1,11 +1,11 @@
 config:
   target: 'http://localhost:3100'
   phases:
-    - duration: 1
+    - duration: 60
       arrivalRate: 1000
 scenarios:
   - flow:
       - get:
-          url: '/artists/The%20Brainy%20Sauce%20City/related'
+          url: '/artists/234142/related'
       - get:
-          url: '/artists/The%20Brainy%20Sauce%20City'
+          url: '/artists/234142'
