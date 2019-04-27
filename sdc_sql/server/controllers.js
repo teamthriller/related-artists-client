@@ -41,14 +41,11 @@ const getRelatedArtists = (req, res) => {
 };
 
 const checkRedisCache = (req, res, next) => {
-  console.log(req.params);
   const id = req.params.artistId;
   redisClient.get(`${id}`, (err, results) => {
-    console.log(results);
     if (err) {
       console.log(err);
     } else if (results !== null) {
-      console.log('method called');
       // redisClient.del(id);
       res.status(200).json(JSON.parse(results));
     } else {
